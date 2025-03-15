@@ -3,12 +3,9 @@ name = "rust-web-app"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.70"
-authors = ["Jeremy Chone <jeremy.chone@gmail.com>"]
-license = "MIT OR Apache-2.0"
-description = "AwesomeApp rust-web-app."
-homepage="https://awesomeapp.dev"
-repository = "https://github.com/awesomeapp-dev/rust-web-app"
-
+authors = ["Jeremy Chone <jeremy.chone@gmail.com>", "Gracjan Wojciechowski <gracjanwojciechowski2002@gmail.com"]
+description = "follow along to Jeremy Chone's https://github.com/awesomeapp-dev/rust-web-app"
+repository = "https://github.com/GracjanPW/rust-prod-axum-tutorial.git"
 
 [dependencies]
 tokio = { version = "1", features = ["full"] }
@@ -20,11 +17,15 @@ serde_with = "3"
 axum = "0.6"
 tower-http = { version = "0.4", features = ["fs"] }
 tower-cookies = "0.9"
+# -- Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 # -- Others
 uuid = {version = "1", features = ["v4","fast-rng",]}
 lazy-regex = "3"
 async-trait = "0.1"
 strum_macros = "0.25"
+
 
 
 [dev-dependencies]
