@@ -20,6 +20,11 @@ RUST_LOG="rust_web_app=debug"
 
 SERVICE_DB_URL="postgres://app_user:dev_only_pwd@localhost:5432/app_db"
 
+SERVICE_PWD_KEY="O9MhiaX3b0wH4coKYVoJwPLX7pfwlZxc5ftytRgEzfJWoNGnI0fiwBv_qX7EeXprRC_BXiBB-96Yylm9UOoxmw"
+
+SERVICE_TOKEN_KEY="O9MhiaX3b0wH4coKYVoJwPLX7pfwlZxc5ftytRgEzfJWoNGnI0fiwBv_qX7EeXprRC_BXiBB-96Yylm9UOoxmw"
+SERVICE_TOKEN_DURATION_SEC="1800"
+
 ## -- ConfigMap 
 
 # This will be relative to Cargo.toml
