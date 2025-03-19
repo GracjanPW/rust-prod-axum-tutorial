@@ -9,6 +9,14 @@ pub enum Error {
 
 	// -- Pwd
 	PwdNotMatching,
+
+	// -- Token
+	TokenInvalidFormat,
+	TokenCannotDecodeIdent,
+	TokenCannotDecodeExp,
+	TokenSignatureNotMatching,
+	TokenExpNotIso,
+	TokenExpired,
 }
 
 // region:    --- Error Boilerplate
