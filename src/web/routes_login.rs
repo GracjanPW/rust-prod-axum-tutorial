@@ -39,17 +39,17 @@ async fn api_login_handler(
 		.ok_or(Error::LoginFailUsernameNotFound)?;
 	let user_id = user.id;
 
-	// -- Validate the password 
+	// -- Validate the password
 	let Some(pwd) = user.pwd else {
-		return Err(Error::LoginFailUserHasNoPwd { user_id })
+		return Err(Error::LoginFailUserHasNoPwd { user_id });
 	};
 
 	pwd::validate_pwd(
 		&EncryptionContent {
 			salt: user.pwd_salt.to_string(),
 			content: pwd_clear.clone(),
-		}, 
-		&pwd
+		},
+		&pwd,
 	)
 	.map_err(|_| Error::LoginFailPwdNotMatching { user_id })?;
 
@@ -70,7 +70,6 @@ async fn api_login_handler(
 struct LoginPayload {
 	username: String,
 	pwd: String,
-
 }
 // endregion: --- Login
 
@@ -98,7 +97,7 @@ async fn api_logoff_handler(
 
 #[derive(Debug, Deserialize)]
 struct LogoffPayload {
-	logoff: bool
+	logoff: bool,
 }
 
 // endregion: --- Logoff

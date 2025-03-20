@@ -1,14 +1,14 @@
 //! Model Laye
-//! 
-//! Design: 
-//! 
+//!
+//! Design:
+//!
 //! - The model layer normalizes the apllication's data type
 //!   structures and access
 //! - All application code data access must go through the Model layer.
 //! - The `ModelManager` holds the internal states/resources
 //!   needed by ModelControllers to access the data.
 //!   (e.g., dp_pool, S3 client, redis client).
-//! - Model Controllers (e.g., `TaskBmc`, `ProjectBmc`) implement 
+//! - Model Controllers (e.g., `TaskBmc`, `ProjectBmc`) implement
 //!   CRUD and other data access methods on a given "Entity"
 //!   (e.q., `Task`, `Project`).
 //!   (`Bmc` is short for Backend Model Controller).
@@ -39,9 +39,7 @@ impl ModelManager {
 	pub async fn new() -> Result<Self> {
 		let db = new_db_pool().await?;
 		// FIXME - TBC
-		Ok(ModelManager {
-			db
-		})
+		Ok(ModelManager { db })
 	}
 	pub(in crate::model) fn db(&self) -> &Db {
 		&self.db

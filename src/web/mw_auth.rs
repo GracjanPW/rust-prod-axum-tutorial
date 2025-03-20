@@ -37,7 +37,9 @@ pub async fn mw_ctx_resolve<B>(
 
 	let ctx_ext_result = _ctx_resolve(mm, &cookies).await;
 
-	if ctx_ext_result.is_err() && !matches!(ctx_ext_result, Err(CtxExtError::TokenNotInCookie)) {
+	if ctx_ext_result.is_err()
+		&& !matches!(ctx_ext_result, Err(CtxExtError::TokenNotInCookie))
+	{
 		cookies.remove(Cookie::named(AUTH_TOKEN));
 	};
 
@@ -57,10 +59,11 @@ async fn _ctx_resolve(mm: State<ModelManager>, cookies: &Cookies) -> CtxExtResul
 	let token: Token = token.parse().map_err(|_| CtxExtError::TokenWrongFormat)?;
 
 	// -- Get UserForAuth
-	let user: UserForAuth = UserBmc::first_by_username(&Ctx::root_ctx(), &mm, &token.ident)
-		.await
-		.map_err(|ex| CtxExtError::ModelAccessError(ex.to_string()))?
-		.ok_or(CtxExtError::UserNotFound)?;
+	let user: UserForAuth =
+		UserBmc::first_by_username(&Ctx::root_ctx(), &mm, &token.ident)
+			.await
+			.map_err(|ex| CtxExtError::ModelAccessError(ex.to_string()))?
+			.ok_or(CtxExtError::UserNotFound)?;
 
 	// -- Validate Token
 	validate_web_token(&token, &user.token_salt.to_string())
@@ -73,7 +76,7 @@ async fn _ctx_resolve(mm: State<ModelManager>, cookies: &Cookies) -> CtxExtResul
 	// -- create CtxExtResult
 
 	Ctx::new(user.id).map_err(|ex| CtxExtError::CtxCreateFail(ex.to_string()))
-} 
+}
 
 // region:    --- Ctx Extractor
 #[async_trait]
@@ -106,7 +109,7 @@ pub enum CtxExtError {
 
 	CtxCreateFail(String),
 	TokenWrongFormat,
-FailValidate,
-CannotSetTokenCookie,
+	FailValidate,
+	CannotSetTokenCookie,
 }
 // endregion: --- Ctx Extractor Result/Error
